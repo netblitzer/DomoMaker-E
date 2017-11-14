@@ -56,10 +56,14 @@ DomoSchema.statics.sortByAge = (ownerId, direction, callback) => {
     owner: convertId(ownerId),
   };
 
-  if (direction === 'ascending')
-    return DomoModel.find(search).sort({ age: -1 }).select('name age power').exec(callback);
-  else
-    return DomoModel.find(search).sort({ age: 1 }).select('name age power').exec(callback);
+  if (direction === 'ascending') {
+    return DomoModel.find(search).sort({ age: -1 })
+      .select('name age power')
+      .exec(callback);
+  }
+  return DomoModel.find(search).sort({ age: 1 })
+    .select('name age power')
+    .exec(callback);
 };
 
 DomoSchema.statics.sortByPower = (ownerId, direction, callback) => {
@@ -67,10 +71,14 @@ DomoSchema.statics.sortByPower = (ownerId, direction, callback) => {
     owner: convertId(ownerId),
   };
 
-  if (direction === 'ascending')
-    return DomoModel.find(search).sort({ power: -1 }).select('name age power').exec(callback);
-  else
-    return DomoModel.find(search).sort({ power: 1 }).select('name age power').exec(callback);
+  if (direction === 'ascending') {
+    return DomoModel.find(search).sort({ power: -1 })
+      .select('name age power')
+      .exec(callback);
+  }
+  return DomoModel.find(search).sort({ power: 1 })
+    .select('name age power')
+    .exec(callback);
 };
 
 DomoModel = mongoose.model('Domo', DomoSchema);

@@ -62,7 +62,7 @@ const sortDomos = (request, response) => {
   const res = response;
   const sort = req.query.sort;
   const dir = req.query.direction;
-  
+
   if (sort === 'age') {
     return Domo.DomoModel.sortByAge(req.session.account._id, dir, (err, docs) => {
       if (err) {
@@ -72,16 +72,15 @@ const sortDomos = (request, response) => {
 
       return res.json({ domos: docs });
     });
-  } else {
-    return Domo.DomoModel.sortByPower(req.session.account._id, dir, (err, docs) => {
-      if (err) {
-        console.log(err);
-        return res.status(400).json({ error: 'RAWR! An error occurred!' });
-      }
-
-      return res.json({ domos: docs });
-    });
   }
+  return Domo.DomoModel.sortByPower(req.session.account._id, dir, (err, docs) => {
+    if (err) {
+      console.log(err);
+      return res.status(400).json({ error: 'RAWR! An error occurred!' });
+    }
+
+    return res.json({ domos: docs });
+  });
 };
 
 module.exports = {
